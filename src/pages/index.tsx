@@ -62,7 +62,7 @@ export default function Home() {
             </Link>
           </div>
           <form
-            className="flex flex-col justify-center gap-6 bg-white bg-opacity-40 p-10 !text-black backdrop-blur-md lg:p-20"
+            className="flex flex-col justify-center gap-6 bg-white bg-opacity-60 p-10 !text-black backdrop-blur-md lg:p-20"
             onSubmit={async (e) => {
               e.preventDefault();
               await submit();
