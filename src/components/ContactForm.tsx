@@ -11,10 +11,14 @@ import { Button } from "./ui/button";
 export default function ContactForm({
   onClose,
   passRef,
+  darkBg: darkBgProp,
 }: {
   onClose?: () => void;
   passRef?: React.RefObject<HTMLFormElement>;
+  darkBg?: boolean;
 }) {
+  const darkBg = darkBgProp ?? false;
+
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const [name, setName] = useState("");
@@ -40,7 +44,7 @@ export default function ContactForm({
 
   return (
     <form
-      className="absolute inset-0 flex w-full flex-col justify-center px-8 text-black md:px-20"
+      className={`absolute inset-0 flex w-full flex-col justify-center px-8 ${darkBg ? "text-white lg:px-48" : "text-black lg:px-20"}`}
       ref={passRef}
       onSubmit={(e) => {
         e.preventDefault();
@@ -100,7 +104,7 @@ export default function ContactForm({
             placeholder="Your name"
             id="name"
             required
-            className="bg-gray-100 text-black !ring-offset-0 focus:border focus:border-black focus-visible:outline-none focus-visible:ring-0"
+            className="border-0 bg-neutral-800 text-white !ring-offset-0 focus-visible:ring-2 focus-visible:ring-blue-400"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -113,7 +117,7 @@ export default function ContactForm({
             id="email"
             type="email"
             required
-            className="bg-gray-100 text-black !ring-offset-0 focus:border focus:border-black focus-visible:outline-none focus-visible:ring-0"
+            className="border-0 bg-neutral-800 text-white !ring-offset-0 focus-visible:ring-2 focus-visible:ring-blue-400"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -125,7 +129,7 @@ export default function ContactForm({
             placeholder="Write your message to me"
             id="message"
             required
-            className="bg-gray-100 text-black outline-none !ring-offset-0 focus:border focus:border-black focus-visible:outline-none focus-visible:ring-0"
+            className="border-0 bg-neutral-800 text-white !ring-offset-0 focus-visible:ring-2 focus-visible:ring-blue-400"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
@@ -134,12 +138,12 @@ export default function ContactForm({
         <LoadingButton
           loading={submitting}
           type="submit"
-          className="bg-neutral-800 text-white hover:bg-neutral-800 hover:bg-opacity-80"
+          className={`text-white hover:bg-opacity-80 ${darkBg ? "bg-blue-400 hover:bg-blue-400" : "bg-neutral-800 hover:bg-neutral-800"}`}
         >
           Send
         </LoadingButton>
 
-        <p className="text-dimmed text-sm">
+        <p className={`text-sm ${darkBg ? "text-gray-200" : "text-dimmed"}`}>
           Or email collincronin227@gmail.com
         </p>
       </div>

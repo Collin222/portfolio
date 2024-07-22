@@ -45,10 +45,10 @@ export default function Home() {
 
   return (
     <div className="max-w-screen overflow-x-hidden">
-      <div className="grid min-h-screen grid-cols-1 rounded-b-xl bg-[url(/img/bg.png)] bg-cover bg-center shadow-2xl shadow-black md:grid-cols-2">
+      <div className="relative grid min-h-screen grid-cols-1 rounded-b-xl bg-[url(/img/bg.png)] bg-cover bg-center shadow-2xl shadow-black md:grid-cols-2">
         <div className="absolute inset-0 rounded-b-xl bg-black bg-opacity-60"></div>
 
-        <div className="relative animate-appear z-10 flex flex-col justify-center p-8 py-36 text-white lg:p-20">
+        <div className="relative z-10 flex animate-appear flex-col justify-center p-8 py-36 text-white lg:p-20">
           <h1 className="text-xl font-bold">Hey, I'm Collin</h1>
 
           <h1 className="mt-8 text-3xl font-black">
@@ -97,7 +97,10 @@ export default function Home() {
               <IconMailFilled />
             </a>
 
-            <a href="https://discord.com/users/693570309491654726" target="_blank">
+            <a
+              href="https://discord.com/users/693570309491654726"
+              target="_blank"
+            >
               <IconBrandDiscordFilled />
             </a>
           </div>
@@ -132,7 +135,7 @@ export default function Home() {
           >
             <Carousel
               ref={carouselRef}
-              className="animate-appear mx-20"
+              className="mx-20 animate-appear"
               plugins={[
                 Autoplay({
                   delay: 6000,
@@ -146,7 +149,7 @@ export default function Home() {
                   <img
                     src="/img/discolytics.png"
                     alt="discolytics"
-                    className="border-dimmed aspect-[2/1] rounded-2xl border-2 shadow-black"
+                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
                   />
 
                   <h1 className="mt-6 text-center font-medium">
@@ -167,7 +170,7 @@ export default function Home() {
                   <img
                     src="/img/melonly.png"
                     alt="melonly"
-                    className="border-dimmed aspect-[2/1] rounded-2xl border-2 shadow-black"
+                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
                   />
 
                   <h1 className="mt-6 text-center font-medium">
@@ -188,33 +191,44 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="p-8 py-36 lg:p-20" id="work">
+      <div className="px-8 py-36 lg:px-48" id="work">
         <h1 className="text-2xl font-black">My Work</h1>
-        <p className="text-dimmed text-lg">
-          My unique, engaging creations for the web
+        <p className="text-lg text-dimmed">
+          My unique, engaging creations for the web.{" "}
+          <Link
+            href="#contact"
+            onClick={() => setContactForm(true)}
+            className="text-blue-400 hover:text-blue-300"
+          >
+            Hire me?
+          </Link>
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
           <Project
             link="https://www.discolytics.com"
             img="/img/discolytics.png"
-            name="Discolytics"
+            name="Discolytics – Founder & CEO"
             description="Founder & CEO, created and designed the website. Discolytics is a powerful software as a service product that helps businesses on Discord, a chat app, scale and grow."
+            logo="/img/discolyticslogo.png"
+            tagline="Next.js / TypeScript / Stripe"
           />
 
           <Project
             link="https://melonly.xyz"
             img="/img/melonly.png"
-            name="Melonly"
+            name="Melonly – Founder"
             description="Founder, created and designed the website. Melonly is a strong CRM for communities online to manage and grow their community."
+            logo="/img/melonlylogo.png"
+            tagline="Next.js / TypeScript / MySQL"
           />
         </div>
       </div>
 
-      <div className="relative h-[500px] bg-blue-400 p-8 py-36 lg:p-20">
-        <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-blue-400"></div>
+      <div className="relative h-[500px] bg-neutral-900 px-8 py-36 lg:px-48">
+        <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-neutral-900"></div>
 
-        <ContactForm />
+        <ContactForm darkBg />
       </div>
     </div>
   );
