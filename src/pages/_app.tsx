@@ -1,10 +1,7 @@
 import { Noto_Sans } from "next/font/google";
 import { type AppType } from "next/app";
+import { api } from "~/utils/api";
 import "~/styles/globals.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 import Head from "next/head";
 
 const notoSans = Noto_Sans({
@@ -32,4 +29,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 };
 
-export default MyApp;
+export default api.withTRPC(MyApp);

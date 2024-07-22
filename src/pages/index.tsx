@@ -1,175 +1,220 @@
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import LoadingButton from "@mui/lab/LoadingButton";
-import Select from "@mui/material/Select";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { useEffect, useRef, useState } from "react";
+import ArrowButton from "~/components/ArrowButton";
+import Shine from "~/components/Shine";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "~/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { CSSTransition } from "react-transition-group";
+import {
+  IconArrowWaveLeftUp,
+  IconBrandDiscordFilled,
+  IconBrandGithub,
+  IconBrandGithubFilled,
+  IconBrandXFilled,
+  IconMailFilled,
+} from "@tabler/icons-react";
+import Project from "~/components/Project";
+import ContactForm from "~/components/ContactForm";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const [submitting, setSubmitting] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [reason, setReason] = useState("");
-  const [message, setMessage] = useState("");
-  const [contactResult, setContactResult] = useState<string>("");
+  const router = useRouter();
 
-  const submit = async () => {
-    setSubmitting(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLFormElement>(null);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        reason,
-        message,
-      }),
-    });
-    const success = res.status >= 200 && res.status < 300;
+  const [contactForm, setContactForm] = useState(false);
 
-    setSubmitting(false);
+  useEffect(() => {
+    removeHash();
+  }, [router]);
 
-    if (!success) {
-      setContactResult("Something went wrong. Please try again later.");
-    } else {
-      setContactResult(
-        "Thank you for your message! I will get back to you soon.",
-      );
-    }
-  };
+  function removeHash() {
+    history.pushState(
+      "",
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+  }
 
   return (
-    <div>
-      <div className="relative min-h-screen rounded-b-md bg-[url('/background.jpg')] bg-cover !text-white shadow-lg shadow-black">
-        <div className="grid min-h-screen grid-cols-1 gap-10 rounded-b-md bg-black bg-opacity-50 lg:grid-cols-2">
-          <div className="flex flex-col justify-center p-10 py-40 lg:p-20">
-            <h2 className="text-4xl font-semibold">Hey, I&apos;m Collin</h2>
+    <div className="max-w-screen overflow-x-hidden">
+      <div className="grid min-h-screen grid-cols-1 rounded-b-xl bg-[url(/img/bg.png)] bg-cover bg-center shadow-2xl shadow-black md:grid-cols-2">
+        <div className="absolute inset-0 rounded-b-xl bg-black bg-opacity-60"></div>
 
-            <h1 className="my-10 text-6xl font-black">
-              I build and design websites
-            </h1>
+        <div className="relative animate-appear z-10 flex flex-col justify-center p-8 py-36 text-white lg:p-20">
+          <h1 className="text-xl font-bold">Hey, I'm Collin</h1>
 
-            <Link href="#work">
-              <Button className="w-fit !text-white" variant="contained">
+          <h1 className="mt-8 text-3xl font-black">
+            Creating beautiful and engaging websites since 2020
+          </h1>
+
+          <p className="mt-4 text-gray-100">
+            I create websites that stand out from the industry norm, offering
+            engaging and unique experiences tailored to captivate customers and
+            help businesses gain valuable leads.
+          </p>
+
+          <div className="mt-4 flex gap-4">
+            <Link href="#contact" className="w-1/2">
+              <ArrowButton
+                className="w-full overflow-hidden rounded-3xl bg-blue-400 p-4 text-white shadow-2xl shadow-blue-400 hover:bg-blue-300"
+                onClick={() => setContactForm(true)}
+              >
+                Contact me
+                <Shine />
+              </ArrowButton>
+            </Link>
+
+            <Link href="#work" className="w-1/2">
+              <ArrowButton className="w-full rounded-3xl bg-white p-4 text-black hover:bg-white hover:bg-opacity-90">
                 View my work
-              </Button>
+              </ArrowButton>
             </Link>
           </div>
-          <form
-            className="flex flex-col justify-center gap-6 bg-white bg-opacity-80 lg:bg-opacity-60 p-10 !text-black backdrop-blur-md lg:p-20"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              await submit();
-            }}
+
+          <p className="ml-6 mt-6 rotate-2 text-sm font-medium text-white md:ml-12">
+            <IconArrowWaveLeftUp className="mr-2 inline-block -translate-y-1 rotate-[20deg]" />
+            Let's talk – order a website, hire me for a project, or ask a
+            question
+          </p>
+
+          <div className="absolute bottom-0 left-0 mt-4 flex gap-4 p-8 lg:p-20">
+            <a href="https://github.com/Collin222" target="_blank">
+              <IconBrandGithubFilled />
+            </a>
+            <a href="https://x.com/Collin22h" target="_blank">
+              <IconBrandXFilled />
+            </a>
+
+            <a href="mailto:collincronin227@gmail.com" target="_blank">
+              <IconMailFilled />
+            </a>
+
+            <a href="https://discord.com/users/693570309491654726" target="_blank">
+              <IconBrandDiscordFilled />
+            </a>
+          </div>
+        </div>
+
+        <div
+          id="contact"
+          className="relative flex items-center justify-center rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
+        >
+          <CSSTransition
+            in={contactForm}
+            timeout={500}
+            classNames="fade"
+            nodeRef={contactRef}
+            unmountOnExit
           >
-            <h1 className="text-4xl font-black">Let&apos;s talk</h1>
+            <>
+              <div className="h-[450px]"></div>
+              <ContactForm
+                onClose={() => setContactForm(false)}
+                passRef={contactRef}
+              />
+            </>
+          </CSSTransition>
 
-            <TextField
-              variant="filled"
-              label="Name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-
-            <TextField
-              variant="filled"
-              label="Email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <FormControl fullWidth required>
-              <InputLabel id="Reason">Reason</InputLabel>
-              <Select
-                labelId="reason"
-                label="Reason"
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                variant="filled"
-              >
-                <MenuItem value="I want to work with you">
-                  I want to order a website
-                </MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
-              </Select>
-            </FormControl>
-
-            <TextField
-              variant="filled"
-              label="Message"
-              multiline
-              minRows={3}
-              maxRows={10}
-              required
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-
-            <LoadingButton
-              loading={submitting}
-              disabled={contactResult.length > 0}
-              type="submit"
-              variant="contained"
-              onClick={submit}
+          <CSSTransition
+            in={!contactForm}
+            timeout={500}
+            classNames="fade"
+            nodeRef={carouselRef}
+            unmountOnExit
+          >
+            <Carousel
+              ref={carouselRef}
+              className="animate-appear mx-20"
+              plugins={[
+                Autoplay({
+                  delay: 6000,
+                }),
+              ]}
             >
-              Send
-            </LoadingButton>
+              <CarouselPrevious className="border-black !bg-transparent text-black hover:text-black" />
+              <CarouselNext className="border-black !bg-transparent text-black hover:text-black" />
+              <CarouselContent>
+                <CarouselItem>
+                  <img
+                    src="/img/discolytics.png"
+                    alt="discolytics"
+                    className="border-dimmed aspect-[2/1] rounded-2xl border-2 shadow-black"
+                  />
 
-            {contactResult.length > 0 && <p>{contactResult}</p>}
+                  <h1 className="mt-6 text-center font-medium">
+                    Discolytics – Founder & CEO, created and designed the
+                    website
+                  </h1>
+                  <ArrowButton
+                    variant="link"
+                    className="m-0 mx-auto p-0 hover:no-underline"
+                  >
+                    <a href="https://www.discolytics.com" target="_blank">
+                      Visit website
+                    </a>
+                  </ArrowButton>
+                </CarouselItem>
 
-            <p className="text-sm">
-              Or email{" "}
-              <a href="mailto:collincronin227@gmail.com">
-                collincronin227@gmail.com
-              </a>
-            </p>
-          </form>
+                <CarouselItem>
+                  <img
+                    src="/img/melonly.png"
+                    alt="melonly"
+                    className="border-dimmed aspect-[2/1] rounded-2xl border-2 shadow-black"
+                  />
+
+                  <h1 className="mt-6 text-center font-medium">
+                    Melonly – Founder, created and designed the website
+                  </h1>
+                  <ArrowButton
+                    variant="link"
+                    className="m-0 mx-auto p-0 hover:no-underline"
+                  >
+                    <a href="https://melonly.xyz" target="_blank">
+                      Visit website
+                    </a>
+                  </ArrowButton>
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
+          </CSSTransition>
         </div>
       </div>
 
-      <div className="flex flex-col gap-20 p-10 lg:p-20">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-4">
-            <h2 className="font-bold text-blue-500" id="work">
-              My Work
-            </h2>
+      <div className="p-8 py-36 lg:p-20" id="work">
+        <h1 className="text-2xl font-black">My Work</h1>
+        <p className="text-dimmed text-lg">
+          My unique, engaging creations for the web
+        </p>
 
-            <h1 className="text-4xl font-black">Discolytics</h1>
+        <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+          <Project
+            link="https://www.discolytics.com"
+            img="/img/discolytics.png"
+            name="Discolytics"
+            description="Founder & CEO, created and designed the website. Discolytics is a powerful software as a service product that helps businesses on Discord, a chat app, scale and grow."
+          />
 
-            <p>
-              I created{" "}
-              <a href="https://discolytics.com" target="_blank">
-                discolytics.com
-              </a>
-              , a full-fledged website for building and scaling an application
-              on Discord. With multiple moving parts, I built and scaled all
-              components of the website: the frontend and backend. The dashboard
-              contains many data points and graphs for users to analyze and grow
-              their business.
-            </p>
-
-            <Link href="https://discolytics.com" target="_blank">
-              <Button variant="contained">See Website</Button>
-            </Link>
-          </div>
-
-          <div>
-            <img
-              src="/discolytics.png"
-              alt="Discolytics"
-              className="aspect-[1.5/1] rounded-md shadow-lg shadow-black"
-            />
-          </div>
+          <Project
+            link="https://melonly.xyz"
+            img="/img/melonly.png"
+            name="Melonly"
+            description="Founder, created and designed the website. Melonly is a strong CRM for communities online to manage and grow their community."
+          />
         </div>
+      </div>
+
+      <div className="relative h-[500px] bg-blue-400 p-8 py-36 lg:p-20">
+        <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-blue-400"></div>
+
+        <ContactForm />
       </div>
     </div>
   );
