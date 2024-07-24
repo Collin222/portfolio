@@ -185,6 +185,29 @@ export default function Home() {
                     </a>
                   </ArrowButton>
                 </CarouselItem>
+
+                <CarouselItem>
+                  <img
+                    src="/img/abclandscaping.png"
+                    alt="melonly"
+                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
+                  />
+
+                  <h1 className="mt-6 text-center font-medium">
+                    ABC Landscaping – A demo website
+                  </h1>
+                  <ArrowButton
+                    variant="link"
+                    className="m-0 mx-auto p-0 hover:no-underline"
+                  >
+                    <a
+                      href="https://landscaping-template-six.vercel.app/"
+                      target="_blank"
+                    >
+                      Visit website
+                    </a>
+                  </ArrowButton>
+                </CarouselItem>
               </CarouselContent>
             </Carousel>
           </CSSTransition>
@@ -221,6 +244,15 @@ export default function Home() {
             description="Founder, created and designed the website. Melonly is a strong CRM for communities online to manage and grow their community."
             logo="/img/melonlylogo.png"
             tagline="Next.js / TypeScript / MySQL"
+          />
+
+          <Project
+            link="https://landscaping-template-six.vercel.app/"
+            img="/img/abclandscaping.png"
+            name="ABC Landscaping – A demo website"
+            description="ABC Landscaping is a demo website built to showcase my skills in web development."
+            logo="/img/melonlylogo.png"
+            tagline="Next.js / TypeScript / CSS"
           />
         </div>
       </div>
