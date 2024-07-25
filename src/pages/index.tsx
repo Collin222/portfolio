@@ -67,7 +67,7 @@ export default function Home() {
                 className="w-full overflow-hidden rounded-3xl bg-blue-400 p-4 text-white shadow-2xl shadow-blue-400 hover:bg-blue-300"
                 onClick={() => setContactForm(true)}
               >
-                Contact me
+                Get a Free Website Quote
                 <Shine />
               </ArrowButton>
             </Link>
@@ -81,8 +81,8 @@ export default function Home() {
 
           <p className="ml-6 mt-6 rotate-2 text-sm font-medium text-white md:ml-12">
             <IconArrowWaveLeftUp className="mr-2 inline-block -translate-y-1 rotate-[20deg]" />
-            Let's talk – order a website, hire me for a project, or ask a
-            question
+            Let's talk – get a free website quote, hire me for a project, or ask
+            a question
           </p>
 
           <div className="absolute bottom-0 left-0 mt-4 flex gap-4 p-8 lg:p-20">

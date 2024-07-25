@@ -54,7 +54,7 @@ export default function ContactForm({
       <div className="relative">
         <h1 className="text-2xl font-black">Contact Me</h1>
         <p className="w-[80%]">
-          Order a website, hire me for a project, or ask a question
+          Get a free website quote, hire me for a project, or ask a question
         </p>
 
         {onClose && (
