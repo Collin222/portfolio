@@ -13,9 +13,9 @@ import { CSSTransition } from "react-transition-group";
 import {
   IconArrowWaveLeftUp,
   IconBrandDiscordFilled,
-  IconBrandGithub,
   IconBrandGithubFilled,
   IconBrandXFilled,
+  IconExternalLink,
   IconMailFilled,
 } from "@tabler/icons-react";
 import Project from "~/components/Project";
@@ -61,8 +61,8 @@ export default function Home() {
             help businesses gain valuable leads.
           </p>
 
-          <div className="mt-4 flex gap-4">
-            <Link href="#contact" className="w-1/2">
+          <div className="mt-4 flex flex-col gap-4 lg:flex-row">
+            <Link href="#contact">
               <ArrowButton
                 className="w-full overflow-hidden rounded-3xl bg-blue-400 p-4 text-white shadow-2xl shadow-blue-400 hover:bg-blue-300"
                 onClick={() => setContactForm(true)}
@@ -72,7 +72,7 @@ export default function Home() {
               </ArrowButton>
             </Link>
 
-            <Link href="#work" className="w-1/2">
+            <Link href="#work">
               <ArrowButton className="w-full rounded-3xl bg-white p-4 text-black hover:bg-white hover:bg-opacity-90">
                 View my work
               </ArrowButton>
@@ -108,7 +108,7 @@ export default function Home() {
 
         <div
           id="contact"
-          className="relative flex items-center justify-center rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
+          className="overflow-x-hidden relative flex items-center justify-center rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
         >
           <CSSTransition
             in={contactForm}
@@ -146,6 +146,10 @@ export default function Home() {
               <CarouselNext className="border-black !bg-transparent text-black hover:text-black" />
               <CarouselContent>
                 <CarouselItem>
+                  <h1 className="mb-6 text-center text-lg font-bold">
+                    Featured Work
+                  </h1>
+
                   <img
                     src="/img/discolytics.png"
                     alt="discolytics"
@@ -158,15 +162,23 @@ export default function Home() {
                   </h1>
                   <ArrowButton
                     variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline"
+                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
                   >
                     <a href="https://www.discolytics.com" target="_blank">
-                      Visit website
+                      <IconExternalLink
+                        size={18}
+                        className="mr-1 inline-block"
+                      />{" "}
+                      Live preview
                     </a>
                   </ArrowButton>
                 </CarouselItem>
 
                 <CarouselItem>
+                  <h1 className="mb-6 text-center text-lg font-bold">
+                    Featured Work
+                  </h1>
+
                   <img
                     src="/img/melonly.png"
                     alt="melonly"
@@ -178,15 +190,23 @@ export default function Home() {
                   </h1>
                   <ArrowButton
                     variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline"
+                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
                   >
                     <a href="https://melonly.xyz" target="_blank">
-                      Visit website
+                      <IconExternalLink
+                        size={18}
+                        className="mr-1 inline-block"
+                      />{" "}
+                      Live preview
                     </a>
                   </ArrowButton>
                 </CarouselItem>
 
                 <CarouselItem>
+                  <h1 className="mb-6 text-center text-lg font-bold">
+                    Featured Work
+                  </h1>
+
                   <img
                     src="/img/abclandscaping.png"
                     alt="melonly"
@@ -198,13 +218,17 @@ export default function Home() {
                   </h1>
                   <ArrowButton
                     variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline"
+                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
                   >
                     <a
                       href="https://landscaping-template-six.vercel.app/"
                       target="_blank"
                     >
-                      Visit website
+                      <IconExternalLink
+                        size={18}
+                        className="mr-1 inline-block"
+                      />{" "}
+                      Live preview
                     </a>
                   </ArrowButton>
                 </CarouselItem>
@@ -261,8 +285,8 @@ export default function Home() {
         <div>
           <h1 className="text-2xl font-black">Where am I?</h1>
           <p className="text-lg text-dimmed">
-            I live in Huntley Illinois and the Chicago area. Are you a local business? I
-            would love to work with you!
+            I live in Huntley Illinois and the Chicago area. Are you a local
+            business? I would love to work with you!
           </p>
         </div>
 
@@ -271,7 +295,7 @@ export default function Home() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94635.11756671575!2d-88.5177102397546!3d42.164249518565484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f1440e587b80f%3A0xd6ad845ff11f34fc!2sHuntley%2C%20IL%2060142!5e0!3m2!1sen!2sus!4v1721939961752!5m2!1sen!2sus"
             width="400"
             height="300"
-            style={{ border: "0", borderRadius: '6px' }}
+            style={{ border: "0", borderRadius: "6px" }}
             // allowfullscreen=""
             loading="lazy"
             // referrerpolicy="no-referrer-when-downgrade"
