@@ -12,15 +12,15 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <div className={notoSans.className}>
       <Head>
-        <title>collin22.dev | Web Dev and Design</title>
+        <title>Collin Cronin | Web Design and Development</title>
 
         <meta
           property="og:title"
-          content="Collin Cronin | Web Dev and Design"
+          content="Collin Cronin | Web Design and Development"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://collin22.dev" />
-        <meta property="og:description" content="I build and design websites" />
+        <meta property="og:description" content="Professional and affordable web design and development for the Huntley Illinois and Chicago area." />
         <meta property="og:image" content="https://collin22.dev/ogimage.png" />
       </Head>
 

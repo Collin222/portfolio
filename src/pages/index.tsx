@@ -49,7 +49,7 @@ export default function Home() {
         <div className="absolute inset-0 rounded-b-xl bg-black bg-opacity-60"></div>
 
         <div className="relative z-10 flex animate-appear flex-col justify-center p-8 py-36 text-white lg:p-20">
-          <h1 className="text-xl font-bold">Hey, I'm Collin</h1>
+          <h1 className="text-xl font-bold">Hey, I'm Collin Cronin</h1>
 
           <h1 className="mt-8 text-3xl font-black">
             Creating beautiful and engaging websites since 2020
@@ -254,6 +254,28 @@ export default function Home() {
             logo="/img/melonlylogo.png"
             tagline="Next.js / TypeScript / CSS"
           />
+        </div>
+      </div>
+
+      <div className="mb-40 grid grid-cols-1 gap-12 px-8 md:grid-cols-2 lg:px-48">
+        <div>
+          <h1 className="text-2xl font-black">Where am I?</h1>
+          <p className="text-lg text-dimmed">
+            I live in Huntley Illinois and the Chicago area. Are you a local business? I
+            would love to work with you!
+          </p>
+        </div>
+
+        <div className="md:flex md:justify-center">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94635.11756671575!2d-88.5177102397546!3d42.164249518565484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f1440e587b80f%3A0xd6ad845ff11f34fc!2sHuntley%2C%20IL%2060142!5e0!3m2!1sen!2sus!4v1721939961752!5m2!1sen!2sus"
+            width="400"
+            height="300"
+            style={{ border: "0", borderRadius: '6px' }}
+            // allowfullscreen=""
+            loading="lazy"
+            // referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 
