@@ -44,7 +44,7 @@ export default function ContactForm({
 
   return (
     <form
-      className={`absolute inset-0 flex w-full flex-col justify-center px-8 ${darkBg ? "text-white lg:px-48" : "text-black lg:px-20"}`}
+      className={`flex w-full flex-col justify-center px-8 ${darkBg ? "md:px-0 text-white" : "absolute inset-0 text-black lg:px-20"}`}
       ref={passRef}
       onSubmit={(e) => {
         e.preventDefault();

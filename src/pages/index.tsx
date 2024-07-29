@@ -13,6 +13,7 @@ import { CSSTransition } from "react-transition-group";
 import {
   IconArrowWaveLeftUp,
   IconBrandDiscordFilled,
+  IconBrandFacebookFilled,
   IconBrandGithubFilled,
   IconBrandXFilled,
   IconExternalLink,
@@ -61,8 +62,8 @@ export default function Home() {
             help businesses gain valuable leads.
           </p>
 
-          <div className="mt-4 flex flex-col gap-4 lg:flex-row">
-            <Link href="#contact">
+          <div className="mt-4 flex w-full flex-col gap-4 lg:flex-row">
+            <Link href="#contact" className="flex-grow">
               <ArrowButton
                 className="w-full overflow-hidden rounded-3xl bg-blue-400 p-4 text-white shadow-2xl shadow-blue-400 hover:bg-blue-300"
                 onClick={() => setContactForm(true)}
@@ -72,7 +73,7 @@ export default function Home() {
               </ArrowButton>
             </Link>
 
-            <Link href="#work">
+            <Link href="#work" className="flex-grow">
               <ArrowButton className="w-full rounded-3xl bg-white p-4 text-black hover:bg-white hover:bg-opacity-90">
                 View my work
               </ArrowButton>
@@ -103,12 +104,19 @@ export default function Home() {
             >
               <IconBrandDiscordFilled />
             </a>
+
+            <a
+              href="https://www.facebook.com/profile.php?id=61563577731758"
+              target="_blank"
+            >
+              <IconBrandFacebookFilled />
+            </a>
           </div>
         </div>
 
         <div
           id="contact"
-          className="overflow-x-hidden relative flex items-center justify-center rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
+          className="relative flex items-center justify-center overflow-x-hidden rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
         >
           <CSSTransition
             in={contactForm}
@@ -303,10 +311,46 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="relative h-[500px] bg-neutral-900 px-8 py-36 lg:px-48">
+      <div className="relative bg-neutral-900 px-8 py-20 lg:px-48">
         <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-neutral-900"></div>
 
-        <ContactForm darkBg />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="px-8">
+            <h1 className="text-2xl font-black text-white">Collin Cronin</h1>
+            <p className="mt-1 text-gray-200">Web Design and Development</p>
+
+            <div className="mt-4 flex flex-col gap-4 text-white">
+              <a href="https://github.com/Collin222" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
+                <IconBrandGithubFilled className="text-white" /> @Collin222
+              </a>
+              <a href="https://x.com/Collin22h" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
+                <IconBrandXFilled className="text-white" /> @Collin22h
+              </a>
+
+              <a href="mailto:collincronin227@gmail.com" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
+                <IconMailFilled className="text-white" /> collincronin227@gmail.com
+              </a>
+
+              <a
+                href="https://discord.com/users/693570309491654726"
+                target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200"
+              >
+                <IconBrandDiscordFilled className="text-white" /> @collin22
+              </a>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61563577731758"
+                target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200"
+              >
+                <IconBrandFacebookFilled className="text-white" /> Collin Cronin 
+              </a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <ContactForm darkBg />
+          </div>
+        </div>
       </div>
     </div>
   );
