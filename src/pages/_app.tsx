@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Noto_Sans } from "next/font/google";
 import { type AppType } from "next/app";
 import { api } from "~/utils/api";
@@ -33,11 +31,16 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-16656494520"
         ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'AW-16656494520');
-        </script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16656494520');`,
+          }}
+        />
       </Head>
 
       <Component {...pageProps} />
