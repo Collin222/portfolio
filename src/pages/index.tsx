@@ -23,6 +23,7 @@ import Project from "~/components/Project";
 import ContactForm from "~/components/ContactForm";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
@@ -46,6 +47,20 @@ export default function Home() {
 
   return (
     <div className="max-w-screen overflow-x-hidden">
+      <Head>
+        {/* Event snippet for Page view conversion page */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  gtag('event', 'conversion', {
+      'send_to': 'AW-16656494520/LIX9CMz7rMYZELjft4Y-',
+      'value': 1.0,
+      'currency': 'USD'
+  });`,
+          }}
+        ></script>
+      </Head>
+
       <div className="relative grid min-h-screen grid-cols-1 rounded-b-xl bg-[url(/img/bg.png)] bg-cover bg-center shadow-2xl shadow-black md:grid-cols-2">
         <div className="absolute inset-0 rounded-b-xl bg-black bg-opacity-60"></div>
 
@@ -314,35 +329,50 @@ export default function Home() {
       <div className="relative bg-neutral-900 px-8 py-20 lg:px-48">
         <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-neutral-900"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           <div className="px-8">
             <h1 className="text-2xl font-black text-white">Collin Cronin</h1>
             <p className="mt-1 text-gray-200">Web Design and Development</p>
 
             <div className="mt-4 flex flex-col gap-4 text-white">
-              <a href="https://github.com/Collin222" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
+              <a
+                href="https://github.com/Collin222"
+                target="_blank"
+                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
+              >
                 <IconBrandGithubFilled className="text-white" /> @Collin222
               </a>
-              <a href="https://x.com/Collin22h" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
+              <a
+                href="https://x.com/Collin22h"
+                target="_blank"
+                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
+              >
                 <IconBrandXFilled className="text-white" /> @Collin22h
               </a>
 
-              <a href="mailto:collincronin227@gmail.com" target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200">
-                <IconMailFilled className="text-white" /> collincronin227@gmail.com
+              <a
+                href="mailto:collincronin227@gmail.com"
+                target="_blank"
+                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
+              >
+                <IconMailFilled className="text-white" />{" "}
+                collincronin227@gmail.com
               </a>
 
               <a
                 href="https://discord.com/users/693570309491654726"
-                target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200"
+                target="_blank"
+                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
               >
                 <IconBrandDiscordFilled className="text-white" /> @collin22
               </a>
 
               <a
                 href="https://www.facebook.com/profile.php?id=61563577731758"
-                target="_blank" className="hover:underline flex flex-row gap-2 items-center text-sm text-gray-200"
+                target="_blank"
+                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
               >
-                <IconBrandFacebookFilled className="text-white" /> Collin Cronin 
+                <IconBrandFacebookFilled className="text-white" /> Collin Cronin
               </a>
             </div>
           </div>
