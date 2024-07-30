@@ -244,7 +244,7 @@ export default function Home() {
                     className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
                   >
                     <a
-                      href="https://landscaping-template-six.vercel.app/"
+                      href="https://landscaping.collin22.dev"
                       target="_blank"
                     >
                       <IconExternalLink
@@ -294,7 +294,7 @@ export default function Home() {
           />
 
           <Project
-            link="https://landscaping-template-six.vercel.app/"
+            link="https://landscaping.collin22.dev"
             img="/img/abclandscaping.png"
             name="ABC Landscaping – A demo website"
             description="ABC Landscaping is a demo website built to showcase my skills in web development."
