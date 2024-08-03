@@ -108,14 +108,14 @@ export default function Contact() {
             </div>
 
             <a
-              className="linkline mt-4 w-fit text-2xl"
+              className="linkline mt-4 w-fit text-lg md:text-2xl"
               href="mailto:collincronin227@gmail.com"
             >
               <IconMailFilled className="mr-2 inline-block" size={26} />
               collincronin227@gmail.com
             </a>
 
-            <a className="linkline mt-4 w-fit text-2xl" href="tel:8479618007">
+            <a className="linkline mt-4 w-fit text-lg md:text-2xl" href="tel:8479618007">
               <IconPhoneFilled className="mr-2 inline-block" size={26} />
               847 961 8007
             </a>
