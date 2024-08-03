@@ -1,16 +1,24 @@
-import { Noto_Sans } from "next/font/google";
 import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
+import { Nunito } from "next/font/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
-const notoSans = Noto_Sans({
+const nunito = Nunito({
   subsets: ["latin"],
+  weight: ["200", "400", "700", "900"],
 });
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  useEffect(() => {
+    AOS.init({ delay: 100 });
+  }, []);
+
   return (
-    <div className={notoSans.className}>
+    <div className={nunito.className}>
       <Head>
         <title>Collin Cronin | Web Design and Development</title>
 

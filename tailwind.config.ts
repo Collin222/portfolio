@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       colors: {
-        dimmed: "#262626",
+        black: "#171717",
       },
       keyframes: {
         "accordion-down": {

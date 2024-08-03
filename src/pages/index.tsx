@@ -1,37 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import ArrowButton from "~/components/ArrowButton";
-import Shine from "~/components/Shine";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "~/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { CSSTransition } from "react-transition-group";
+import Header from "~/components/Header";
 import {
   IconArrowWaveLeftUp,
-  IconBrandDiscordFilled,
-  IconBrandFacebookFilled,
-  IconBrandGithubFilled,
-  IconBrandXFilled,
   IconExternalLink,
-  IconMailFilled,
+  IconLeaf,
+  IconPointFilled,
+  IconUserFilled,
 } from "@tabler/icons-react";
-import Project from "~/components/Project";
-import ContactForm from "~/components/ContactForm";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/accordion";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import Footer from "~/components/Footer";
+import Shine from "~/components/Shine";
 
 export default function Home() {
   const router = useRouter();
-
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLFormElement>(null);
-
-  const [contactForm, setContactForm] = useState(false);
 
   useEffect(() => {
     removeHash();
@@ -46,342 +36,484 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-screen overflow-x-hidden">
-      <Head>
-        {/* Event snippet for Page view conversion page */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-  gtag('event', 'conversion', {
-      'send_to': 'AW-16656494520/LIX9CMz7rMYZELjft4Y-',
-      'value': 1.0,
-      'currency': 'USD'
-  });`,
-          }}
-        ></script>
-      </Head>
+    <div className="max-w-screen relative overflow-x-hidden bg-amber-50">
+      <Header />
 
-      <div className="relative grid min-h-screen grid-cols-1 rounded-b-xl bg-[url(/img/bg.png)] bg-cover bg-center shadow-2xl shadow-black md:grid-cols-2">
-        <div className="absolute inset-0 rounded-b-xl bg-black bg-opacity-60"></div>
+      <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white bg-opacity-20 shadow-lg backdrop-blur-2xl md:top-[50vh] md:-translate-y-[50vh]"></div>
 
-        <div className="relative z-10 flex animate-appear flex-col justify-center p-8 py-36 text-white lg:p-20">
-          <h1 className="text-xl font-bold">Hey, I'm Collin Cronin</h1>
+      <div className="gradientbg flex min-h-screen items-center justify-center xl:pr-[10vw]">
+        <div className="container-padding py-36" data-aos="fade-up">
+          <div className="flex items-center gap-2">
+            <IconUserFilled />
+            <h2 className="md:text-xl">Hey, I'm Collin Cronin</h2>
+          </div>
 
-          <h1 className="mt-8 text-3xl font-black">
+          <h1 className="mt-4 text-4xl font-bold md:text-6xl">
             Creating beautiful and engaging websites since 2020
           </h1>
 
-          <p className="mt-4 text-gray-100">
+          <p className="mt-4 md:text-xl">
             I create websites that stand out from the industry norm, offering
             engaging and unique experiences tailored to captivate customers and
             help businesses gain valuable leads.
           </p>
 
-          <div className="mt-4 flex w-full flex-col gap-4 lg:flex-row">
-            <Link href="#contact" className="flex-grow">
-              <ArrowButton
-                className="w-full overflow-hidden rounded-3xl bg-blue-400 p-4 text-white shadow-2xl shadow-blue-400 hover:bg-blue-300"
-                onClick={() => setContactForm(true)}
-              >
+          <div className="mt-8 flex flex-col items-center gap-4 md:flex-row">
+            <Link className="w-full md:w-fit" href="/contact">
+              <ArrowButton className="relative w-full overflow-hidden rounded-full bg-neutral-700 p-6 hover:!bg-neutral-700 hover:!bg-opacity-80 md:p-8 md:text-lg">
                 Get a Free Website Quote
                 <Shine />
               </ArrowButton>
             </Link>
+            <Link className="w-full md:w-fit" href="/work">
+              <ArrowButton className="w-full rounded-full border border-neutral-700 !bg-transparent p-6 text-black hover:!bg-neutral-700 hover:text-white md:p-8 md:text-lg">
+                View my Work
+              </ArrowButton>
+            </Link>
+          </div>
 
-            <Link href="#work" className="flex-grow">
-              <ArrowButton className="w-full rounded-3xl bg-white p-4 text-black hover:bg-white hover:bg-opacity-90">
+          <p className="ml-6 mt-8 max-w-96 rotate-2 md:ml-12">
+            <IconArrowWaveLeftUp className="mr-2 inline-block -translate-y-1 rotate-[20deg]" />
+            Get a free website quote for your business – I'll work with you to
+            design the website of your dreams
+          </p>
+        </div>
+      </div>
+
+      <div
+        className="container-padding grid grid-cols-1 gap-10 py-24 md:grid-cols-2 md:gap-20"
+        data-aos="fade-up"
+      >
+        <div>
+          <p className="text-lg md:text-2xl">
+            Hi, I'm Collin! With 4+ years in web development, I specialize in
+            creating business websites. My focus is on generating more leads and
+            driving growth for your business.
+          </p>
+
+          <Link href="/about">
+            <ArrowButton className="mt-6 w-full rounded-full border border-neutral-700 !bg-transparent p-6 text-black hover:!bg-neutral-700 hover:text-white md:w-fit">
+              Learn about me
+            </ArrowButton>
+          </Link>
+
+          <div className="mt-10 hidden w-fit grid-cols-4 gap-2 md:grid">
+            {[
+              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+              1,
+            ].map(() => (
+              <IconPointFilled
+                size={12}
+                className="text-neutral-800 opacity-70"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Accordion type="single">
+            <AccordionItem value="1">
+              <AccordionTrigger className="text-start text-lg md:text-2xl">
+                What experience do you have?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm md:text-base">
+                I’ve been creating websites and software for over four years.
+                During this time, I've built everything from dynamic websites to
+                custom software solutions. My goal is always to bring your
+                vision to life with creativity and technical skill.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="2">
+              <AccordionTrigger className="text-start text-lg md:text-2xl">
+                How much does a website cost?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm md:text-base">
+                The cost of a website really depends on the project. For simple
+                websites, prices typically start at a few hundred USD. More
+                complex projects will naturally cost more, but we can discuss
+                your needs and budget to find the perfect solution for you.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="3">
+              <AccordionTrigger className="text-start text-lg md:text-2xl">
+                Can you redesign my website?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm md:text-base">
+                Absolutely! I can give your website a fresh, modern look while
+                improving its functionality. Whether you need a complete
+                overhaul or just a few tweaks, I’ll work with you to make sure
+                your site stands out and meets your goals.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="4">
+              <AccordionTrigger className="text-start text-lg md:text-2xl">
+                What separates you from other website designers and developers?
+              </AccordionTrigger>
+              <AccordionContent className="text-sm md:text-base">
+                What sets me apart is my commitment to hand-coding every
+                website. This approach allows me to fully customize your site,
+                ensuring every detail fits your unique needs. Unlike restrictive
+                templates, hand-coding results in a unique, high-performing
+                website designed to engage visitors and drive conversions
+                effectively.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        <div className="mt-10 grid w-fit grid-cols-4 gap-2 md:hidden">
+          {[
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          ].map(() => (
+            <IconPointFilled
+              size={12}
+              className="text-neutral-800 opacity-70"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container-padding bg-sky-50 py-24">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20">
+          <div className="group">
+            <div
+              className="relative aspect-[1.1/1] overflow-hidden rounded-md duration-200 hover:cursor-none group-hover:scale-105"
+              data-aos="fade-up"
+            >
+              <div className="absolute inset-0 flex items-center justify-center bg-sky-100">
+                <Image
+                  src="/img/discolyticslogo.png"
+                  alt="discolytics"
+                  width={100}
+                  height={100}
+                  className="z-20"
+                />
+              </div>
+              <Image
+                src="/img/discolytics.png"
+                alt="discolytics"
+                fill
+                className="duration-200 group-hover:opacity-100 md:opacity-0"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 duration-200 group-hover:opacity-100 md:opacity-0"></div>
+            </div>
+
+            <h1 className="mt-4 text-2xl">Discolytics</h1>
+
+            <p className="mb-4">
+              Designed and developed a complete software solution for businesses
+              developing on the chat app, Discord.
+            </p>
+
+            <Link
+              href="https://discolytics.com"
+              className="duration-200 hover:text-sky-500 hover:underline"
+              target="_blank"
+            >
+              <IconExternalLink className="mr-2 inline-block -translate-y-px" />{" "}
+              Live preview
+            </Link>
+          </div>
+
+          <div className="group mt-20">
+            <div
+              className="relative aspect-[1.1/1] overflow-hidden rounded-md duration-200 hover:cursor-none group-hover:scale-105"
+              data-aos="fade-up"
+            >
+              <div className="absolute inset-0 flex items-center justify-center bg-teal-100">
+                <Image
+                  src="/img/melonlylogo.png"
+                  alt="melonly"
+                  width={200}
+                  height={200}
+                  className="z-20"
+                />
+              </div>
+              <Image
+                src="/img/melonly.png"
+                alt="melonly"
+                fill
+                className="duration-200 group-hover:opacity-100 md:opacity-0"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 duration-200 group-hover:opacity-100 md:opacity-0"></div>
+            </div>
+
+            <h1 className="mt-4 text-2xl">Melonly</h1>
+
+            <p className="mb-4">
+              Designed and developed a CRM solution for communities to scale and
+              manage.
+            </p>
+
+            <Link
+              href="https://melonly.xyz"
+              className="duration-200 hover:text-teal-500 hover:underline"
+              target="_blank"
+            >
+              <IconExternalLink className="mr-2 inline-block -translate-y-px" />{" "}
+              Live preview
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-16 flex justify-center">
+          <Link href="/work">
+            <ArrowButton variant="link" className="text-lg underline">
+              View all my work
+            </ArrowButton>
+          </Link>
+        </div>
+      </div>
+
+      <div className="container-padding pt-24">
+        <div data-aos="fade-up">
+          <div className="md:w-2/3">
+            <h1 className="text-4xl">
+              Mastering SEO, branding, and complex functionality for your
+              success
+            </h1>
+            <p className="mt-4 text-lg">
+              Unlock the full potential of your digital strategy with my
+              expertise in SEO, dynamic branding, and advanced functionality. I
+              craft solutions that not only stand out but also perform, ensuring
+              your website excels in search rankings and user engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="md:container-padding mt-10 grid grid-cols-1 gap-6 px-[5vw] pb-24 lg:grid-cols-3"
+        data-aos="fade-up"
+      >
+        <div
+          className="group relative aspect-[3/1] overflow-hidden rounded-md lg:aspect-[1.5/1]"
+          data-aos="fade-up"
+        >
+          <Image src="/img/seo.png" alt="seo" fill className="object-cover" />
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm duration-200 group-hover:bg-opacity-50 group-hover:backdrop-blur-xl">
+            <h1 className="text-5xl font-bold text-white">SEO</h1>
+          </div>
+        </div>
+
+        <div
+          className="group relative aspect-[3/1] overflow-hidden rounded-md lg:aspect-[1.5/1]"
+          data-aos="fade-up"
+        >
+          <Image
+            src="/img/branding.png"
+            alt="seo"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm duration-200 group-hover:bg-opacity-50 group-hover:backdrop-blur-xl">
+            <h1 className="text-5xl font-bold text-white">Branding</h1>
+          </div>
+        </div>
+
+        <div
+          className="group relative aspect-[3/1] overflow-hidden rounded-md lg:aspect-[1.5/1]"
+          data-aos="fade-up"
+        >
+          <Image
+            src="/img/functionality.png"
+            alt="seo"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm duration-200 group-hover:bg-opacity-50 group-hover:backdrop-blur-xl">
+            <h1 className="text-5xl font-bold text-white">Functionality</h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-padding bg-rose-50 py-24">
+        <div
+          className="flex flex-col gap-4 lg:flex-row lg:gap-20"
+          data-aos="fade-up"
+        >
+          <div className="flex-grow lg:w-2/3">
+            <h2 className="mb-4 text-lg text-green-500">
+              <IconLeaf className="mr-1 inline-block" size={20} /> Landscaping
+            </h2>
+
+            <h1 className="text-4xl">
+              Creating beautiful, high-converting websites for landscaping
+              businesses that elevate your online presence
+            </h1>
+
+            <Link href="/work">
+              <ArrowButton className="mt-6 w-full rounded-full border border-neutral-700 !bg-transparent p-6 text-black hover:!bg-neutral-700 hover:text-white md:w-fit">
                 View my work
               </ArrowButton>
             </Link>
           </div>
 
-          <p className="ml-6 mt-6 rotate-2 text-sm font-medium text-white md:ml-12">
-            <IconArrowWaveLeftUp className="mr-2 inline-block -translate-y-1 rotate-[20deg]" />
-            Let's talk – get a free website quote, hire me for a project, or ask
-            a question
-          </p>
-
-          <div className="absolute bottom-0 left-0 mt-4 flex gap-4 p-8 lg:p-20">
-            <a href="https://github.com/Collin222" target="_blank">
-              <IconBrandGithubFilled />
-            </a>
-            <a href="https://x.com/Collin22h" target="_blank">
-              <IconBrandXFilled />
-            </a>
-
-            <a href="mailto:collincronin227@gmail.com" target="_blank">
-              <IconMailFilled />
-            </a>
-
-            <a
-              href="https://discord.com/users/693570309491654726"
-              target="_blank"
-            >
-              <IconBrandDiscordFilled />
-            </a>
-
-            <a
-              href="https://www.facebook.com/profile.php?id=61563577731758"
-              target="_blank"
-            >
-              <IconBrandFacebookFilled />
-            </a>
-          </div>
-        </div>
-
-        <div
-          id="contact"
-          className="relative flex items-center justify-center overflow-x-hidden rounded-xl bg-blue-400 py-10 shadow-2xl shadow-blue-400 md:rounded-none md:rounded-bl-[100px] md:rounded-br-xl"
-        >
-          <CSSTransition
-            in={contactForm}
-            timeout={500}
-            classNames="fade"
-            nodeRef={contactRef}
-            unmountOnExit
-          >
-            <>
-              <div className="h-[450px]"></div>
-              <ContactForm
-                onClose={() => setContactForm(false)}
-                passRef={contactRef}
-              />
-            </>
-          </CSSTransition>
-
-          <CSSTransition
-            in={!contactForm}
-            timeout={500}
-            classNames="fade"
-            nodeRef={carouselRef}
-            unmountOnExit
-          >
-            <Carousel
-              ref={carouselRef}
-              className="mx-20 animate-appear"
-              plugins={[
-                Autoplay({
-                  delay: 6000,
-                }),
-              ]}
-            >
-              <CarouselPrevious className="border-black !bg-transparent text-black hover:text-black" />
-              <CarouselNext className="border-black !bg-transparent text-black hover:text-black" />
-              <CarouselContent>
-                <CarouselItem>
-                  <h1 className="mb-6 text-center text-lg font-bold">
-                    Featured Work
-                  </h1>
-
-                  <img
-                    src="/img/discolytics.png"
-                    alt="discolytics"
-                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
+          <div className="flex justify-end">
+            <div className="hidden w-fit grid-cols-6 gap-2 md:grid">
+              {[
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1,
+              ].map((x) =>
+                x ? (
+                  <IconPointFilled
+                    size={12}
+                    className="text-green-500 opacity-70"
                   />
-
-                  <h1 className="mt-6 text-center font-medium">
-                    Discolytics – Founder & CEO, created and designed the
-                    website
-                  </h1>
-                  <ArrowButton
-                    variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
-                  >
-                    <a href="https://www.discolytics.com" target="_blank">
-                      <IconExternalLink
-                        size={18}
-                        className="mr-1 inline-block"
-                      />{" "}
-                      Live preview
-                    </a>
-                  </ArrowButton>
-                </CarouselItem>
-
-                <CarouselItem>
-                  <h1 className="mb-6 text-center text-lg font-bold">
-                    Featured Work
-                  </h1>
-
-                  <img
-                    src="/img/melonly.png"
-                    alt="melonly"
-                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
-                  />
-
-                  <h1 className="mt-6 text-center font-medium">
-                    Melonly – Founder, created and designed the website
-                  </h1>
-                  <ArrowButton
-                    variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
-                  >
-                    <a href="https://melonly.xyz" target="_blank">
-                      <IconExternalLink
-                        size={18}
-                        className="mr-1 inline-block"
-                      />{" "}
-                      Live preview
-                    </a>
-                  </ArrowButton>
-                </CarouselItem>
-
-                <CarouselItem>
-                  <h1 className="mb-6 text-center text-lg font-bold">
-                    Featured Work
-                  </h1>
-
-                  <img
-                    src="/img/abclandscaping.png"
-                    alt="melonly"
-                    className="aspect-[2/1] rounded-2xl border-2 border-dimmed shadow-black"
-                  />
-
-                  <h1 className="mt-6 text-center font-medium">
-                    ABC Landscaping – A demo website
-                  </h1>
-                  <ArrowButton
-                    variant="link"
-                    className="m-0 mx-auto p-0 hover:no-underline hover:opacity-70"
-                  >
-                    <a
-                      href="https://landscaping.collin22.dev"
-                      target="_blank"
-                    >
-                      <IconExternalLink
-                        size={18}
-                        className="mr-1 inline-block"
-                      />{" "}
-                      Live preview
-                    </a>
-                  </ArrowButton>
-                </CarouselItem>
-              </CarouselContent>
-            </Carousel>
-          </CSSTransition>
-        </div>
-      </div>
-
-      <div className="px-8 py-36 lg:px-48" id="work">
-        <h1 className="text-2xl font-black">My Work</h1>
-        <p className="text-lg text-dimmed">
-          My unique, engaging creations for the web.{" "}
-          <Link
-            href="#contact"
-            onClick={() => setContactForm(true)}
-            className="text-blue-400 hover:text-blue-300"
-          >
-            Hire me?
-          </Link>
-        </p>
-
-        <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
-          <Project
-            link="https://www.discolytics.com"
-            img="/img/discolytics.png"
-            name="Discolytics – Founder & CEO"
-            description="Founder & CEO, created and designed the website. Discolytics is a powerful software as a service product that helps businesses on Discord, a chat app, scale and grow."
-            logo="/img/discolyticslogo.png"
-            tagline="Next.js / TypeScript / Stripe"
-          />
-
-          <Project
-            link="https://melonly.xyz"
-            img="/img/melonly.png"
-            name="Melonly – Founder"
-            description="Founder, created and designed the website. Melonly is a strong CRM for communities online to manage and grow their community."
-            logo="/img/melonlylogo.png"
-            tagline="Next.js / TypeScript / MySQL"
-          />
-
-          <Project
-            link="https://landscaping.collin22.dev"
-            img="/img/abclandscaping.png"
-            name="ABC Landscaping – A demo website"
-            description="ABC Landscaping is a demo website built to showcase my skills in web development."
-            logo="/img/melonlylogo.png"
-            tagline="Next.js / TypeScript / CSS"
-          />
-        </div>
-      </div>
-
-      <div className="mb-40 grid grid-cols-1 gap-12 px-8 md:grid-cols-2 lg:px-48">
-        <div>
-          <h1 className="text-2xl font-black">Where am I?</h1>
-          <p className="text-lg text-dimmed">
-            I live in Huntley Illinois and the Chicago area. Are you a local
-            business? I would love to work with you!
-          </p>
-        </div>
-
-        <div className="md:flex md:justify-center">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94635.11756671575!2d-88.5177102397546!3d42.164249518565484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f1440e587b80f%3A0xd6ad845ff11f34fc!2sHuntley%2C%20IL%2060142!5e0!3m2!1sen!2sus!4v1721939961752!5m2!1sen!2sus"
-            width="400"
-            height="300"
-            style={{ border: "0", borderRadius: "6px" }}
-            // allowfullscreen=""
-            loading="lazy"
-            // referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-
-      <div className="relative bg-neutral-900 px-8 py-20 lg:px-48">
-        <div className="absolute left-0 right-0 top-0 h-20 w-[150%] -translate-y-12 -rotate-2 bg-neutral-900"></div>
-
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-          <div className="px-8">
-            <h1 className="text-2xl font-black text-white">Collin Cronin</h1>
-            <p className="mt-1 text-gray-200">Web Design and Development</p>
-
-            <div className="mt-4 flex flex-col gap-4 text-white">
-              <a
-                href="https://github.com/Collin222"
-                target="_blank"
-                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
-              >
-                <IconBrandGithubFilled className="text-white" /> @Collin222
-              </a>
-              <a
-                href="https://x.com/Collin22h"
-                target="_blank"
-                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
-              >
-                <IconBrandXFilled className="text-white" /> @Collin22h
-              </a>
-
-              <a
-                href="mailto:collincronin227@gmail.com"
-                target="_blank"
-                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
-              >
-                <IconMailFilled className="text-white" />{" "}
-                collincronin227@gmail.com
-              </a>
-
-              <a
-                href="https://discord.com/users/693570309491654726"
-                target="_blank"
-                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
-              >
-                <IconBrandDiscordFilled className="text-white" /> @collin22
-              </a>
-
-              <a
-                href="https://www.facebook.com/profile.php?id=61563577731758"
-                target="_blank"
-                className="flex flex-row items-center gap-2 text-sm text-gray-200 hover:underline"
-              >
-                <IconBrandFacebookFilled className="text-white" /> Collin Cronin
-              </a>
+                ) : (
+                  <div></div>
+                ),
+              )}
             </div>
           </div>
+        </div>
 
-          <div className="relative">
-            <ContactForm darkBg />
+        <div className="group md:w-3/4" data-aos="fade-up">
+          <div className="relative mt-10 aspect-[1.8/1] overflow-hidden rounded-md duration-200">
+            <Image src="/img/abclandscaping.png" alt="abclandscaping" fill />
+            <div className="absolute inset-0 z-10 bg-black bg-opacity-10"></div>
+          </div>
+
+          <div className="mt-8 flex flex-grow flex-row gap-8">
+            <div>
+              <h1 className="text-2xl">ABC Landscaping</h1>
+
+              <p className="mb-4">
+                A demo design concept for landscaping businesses.
+              </p>
+
+              <Link
+                href="https://landscaping.collin22.dev"
+                className="duration-200 hover:text-green-500 hover:underline"
+              >
+                <IconExternalLink className="mr-2 inline-block -translate-y-px" />{" "}
+                Live preview
+              </Link>
+            </div>
+
+            <div className="flex justify-end">
+              <div className="grid w-fit grid-cols-4 gap-2 md:hidden">
+                {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1].map((x) =>
+                  x ? (
+                    <IconPointFilled
+                      size={12}
+                      className="text-green-500 opacity-70"
+                    />
+                  ) : (
+                    <div></div>
+                  ),
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div className="container-padding py-24">
+        <div data-aos="fade-up" className="md:w-2/3">
+          <h1 className="text-4xl">
+            Transform your vision into high-performing, high-converting websites
+          </h1>
+
+          <p className="mt-4 text-lg">
+            Elevate your online presence with expertly crafted websites designed
+            for peak performance and conversion. My bespoke solutions ensure
+            every detail works in harmony to captivate your audience and drive
+            results.
+          </p>
+
+          <Link href="/contact">
+            <ArrowButton className="mt-6 w-full rounded-full border border-neutral-700 !bg-transparent p-6 text-black hover:!bg-neutral-700 hover:text-white md:w-fit">
+              Get a free website quote
+            </ArrowButton>
+          </Link>
+        </div>
+      </div>
+
+      <div className="container-padding bg-neutral-900 py-24 text-gray-200">
+        <div data-aos="fade-up" className="grid grid-cols-6">
+          <div className="col-span-6 md:col-span-4">
+            <h1 className="text-4xl font-bold text-white">FAQ</h1>
+
+            <Accordion type="single" className="mt-10">
+              <AccordionItem value="1" className="border-neutral-400">
+                <AccordionTrigger className="text-start text-lg md:text-2xl">
+                  What experience do you have?
+                </AccordionTrigger>
+                <AccordionContent className="text-sm md:text-base">
+                  I’ve been creating websites and software for over four years.
+                  During this time, I've built everything from dynamic websites
+                  to custom software solutions. My goal is always to bring your
+                  vision to life with creativity and technical skill.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="2" className="border-neutral-400">
+                <AccordionTrigger className="text-start text-lg md:text-2xl">
+                  How much does a website cost?
+                </AccordionTrigger>
+                <AccordionContent className="text-sm md:text-base">
+                  The cost of a website really depends on the project. For
+                  simple websites, prices typically start at a few hundred USD.
+                  More complex projects will naturally cost more, but we can
+                  discuss your needs and budget to find the perfect solution for
+                  you.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="3" className="border-neutral-400">
+                <AccordionTrigger className="text-start text-lg md:text-2xl">
+                  Can you redesign my website?
+                </AccordionTrigger>
+                <AccordionContent className="text-sm md:text-base">
+                  Absolutely! I can give your website a fresh, modern look while
+                  improving its functionality. Whether you need a complete
+                  overhaul or just a few tweaks, I’ll work with you to make sure
+                  your site stands out and meets your goals.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="4" className="border-neutral-400">
+                <AccordionTrigger className="text-start text-lg md:text-2xl">
+                  What separates you from other website designers and
+                  developers?
+                </AccordionTrigger>
+                <AccordionContent className="text-sm md:text-base">
+                  What sets me apart is my commitment to hand-coding every
+                  website. This approach allows me to fully customize your site,
+                  ensuring every detail fits your unique needs. Unlike
+                  restrictive templates, hand-coding results in a unique,
+                  high-performing website designed to engage visitors and drive
+                  conversions effectively.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          <div className="col-span-2 hidden h-fit justify-end md:flex">
+            <div className="grid w-fit grid-cols-6 gap-2">
+              {[
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1,
+              ].map((x) =>
+                x ? (
+                  <IconPointFilled
+                    size={12}
+                    className="text-white opacity-70"
+                  />
+                ) : (
+                  <div></div>
+                ),
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 }

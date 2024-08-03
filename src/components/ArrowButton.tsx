@@ -4,7 +4,10 @@ import AArrow from "./AArrow";
 
 export default function ArrowButton(
   props: ButtonProps &
-    React.RefAttributes<HTMLButtonElement> & { initiallyHidden?: boolean },
+    React.RefAttributes<HTMLButtonElement> & {
+      initiallyHidden?: boolean;
+      size?: number;
+    },
 ) {
   const initiallyHidden = props.initiallyHidden ?? false;
 
@@ -21,6 +24,7 @@ export default function ArrowButton(
       <AArrow
         show={hovered}
         className={`ml-2 ${initiallyHidden ? `duration-300 ${hovered ? "opacity-100" : "opacity-0"}` : ""}`}
+        size={props.size}
       />
     </Button>
   );

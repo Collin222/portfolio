@@ -2,28 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.fade-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition:
-    opacity 300ms,
-    transform 300ms;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition:
-    opacity 300ms,
-    transform 300ms;
-}
-
 * {
   scroll-behavior: smooth;
+}
+
+.container-padding {
+  @apply px-[10vw];
+}
+
+.gradientbg {
+  background: linear-gradient(269deg, #fef9c3, #fee2e2, #e0f2fe, #fef3c7);
+  background-size: 800% 800%;
+
+  -webkit-animation: gradientbg 30s ease infinite;
+  -moz-animation: gradientbg 30s ease infinite;
+  animation: gradientbg 30s ease infinite;
+}
+
+@-webkit-keyframes gradientbg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes gradientbg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradientbg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.linkline {
+  text-decoration: none;
+  position: relative;
+}
+
+.linkline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.linkline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
